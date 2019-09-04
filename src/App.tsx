@@ -2,19 +2,13 @@ import React, { useState, useEffect } from "react";
 import Posts from "./components/Posts";
 import Pagination from "./components/Pagination";
 import PaginationButtons from "./components/PaginationButtons";
-
-type postType = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-};
+import { postType } from "./interfaces";
 
 const App: React.FC = () => {
-  const [posts, setPosts] = useState<any>([]);
-  const [loading, setLoading] = useState<any>(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [posts, setPosts] = useState<postType[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [postsPerPage] = useState<number>(10);
 
   // Get current post
   const indexOfLastPost = currentPage * postsPerPage;
@@ -23,7 +17,7 @@ const App: React.FC = () => {
   const lastPage = posts.length / postsPerPage;
 
   // Change Page
-  const paginateNumber = (pageNumber: any) => setCurrentPage(pageNumber);
+  const paginateNumber = (pageNumber: number) => setCurrentPage(pageNumber);
   const paginateFirst = () => {
     setCurrentPage(1);
   };
@@ -53,8 +47,6 @@ const App: React.FC = () => {
         paginatePrev={paginatePrev}
         paginateNext={paginateNext}
         paginateLast={paginateLast}
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
       />
       <Pagination
         postsPerPage={postsPerPage}

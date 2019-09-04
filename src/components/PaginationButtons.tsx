@@ -1,11 +1,18 @@
 import React from "react";
 
+interface PaginationPropsI {
+  paginateFirst: () => void;
+  paginateNext: () => void;
+  paginatePrev: () => void;
+  paginateLast: () => void;
+}
+
 const Pagination = ({
   paginateFirst,
   paginateNext,
   paginatePrev,
   paginateLast
-}: any) => (
+}: PaginationPropsI) => (
   <nav className="pb-4">
     <button
       onClick={() => paginateFirst()}
